@@ -1,0 +1,12 @@
+# Node.js dependencies
+node_modules/
+
+# Env files
+*.env
+
+# Build folders
+skill-frontend/build
+skill-backend/dist
+
+# OS files
+.DS_Store
