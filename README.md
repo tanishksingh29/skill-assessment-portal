@@ -7,8 +7,8 @@ Supports **role-based access** (`user`, `admin`) with secure JWT-based authentic
 
 ##  Live Demo
 
-- **Frontend:** https://your-frontend.vercel.app  
-- **Backend:** https://your-backend.up.railway.app  
+- **Frontend:** https://skill-assessment-portal-nine.vercel.app/
+- **Backend:** https://skill-assessment-portal-production.up.railway.app/
 
 ---
 
