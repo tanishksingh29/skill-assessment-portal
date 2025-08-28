@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config(); // local development
-const db = require('./db'); // import the db connection
+const db = require('./config/db'); // import the db connection
 
 const authRoutes = require('./routes/authRoutes');
 const skillRoutes = require('./routes/skillRoutes');
