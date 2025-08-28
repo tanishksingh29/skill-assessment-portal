@@ -1,3 +1,4 @@
+// src/pages/Register.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../services/api';
@@ -8,26 +9,32 @@ import {
   Typography,
   Container,
   Paper,
-  MenuItem,
-  Select,
-  InputLabel,
-  FormControl,
 } from '@mui/material';
 
 function Register() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState('user'); // default role
+  const [secretCode, setSecretCode] = useState('');
   const navigate = useNavigate();
 
   const handleRegister = async () => {
+    if (secretCode !== 'ADMIN') {
+      alert('Unauthorized access');
+      return;
+    }
+
     try {
-      await api.post('/auth/register', { name, email, password, role });
-      alert('Registered successfully');
+      await api.post('/auth/register', {
+        name,
+        email,
+        password,
+        role: 'admin',
+      });
+      alert('Admin Registered successfully');
       navigate('/');
     } catch (err) {
-      alert('Registration failed');
+      alert(err.response?.data?.message || 'Registration failed');
     }
   };
 
@@ -35,22 +42,14 @@ function Register() {
     <Container maxWidth="sm">
       <Paper elevation={3} sx={{ p: 4, mt: 10 }}>
         <Typography variant="h4" align="center" gutterBottom>
-          Register
+          Admin Registration
         </Typography>
         <Box display="flex" flexDirection="column" gap={2}>
           <TextField label="Name" value={name} onChange={(e) => setName(e.target.value)} fullWidth />
           <TextField label="Email" value={email} onChange={(e) => setEmail(e.target.value)} fullWidth />
           <TextField label="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} fullWidth />
-
-          <FormControl fullWidth>
-            <InputLabel>Role</InputLabel>
-            <Select value={role} label="Role" onChange={(e) => setRole(e.target.value)}>
-              <MenuItem value="user">User</MenuItem>
-              <MenuItem value="admin">Admin</MenuItem>
-            </Select>
-          </FormControl>
-
-          <Button variant="contained" onClick={handleRegister}>Register</Button>
+          <TextField label="Secret Code" value={secretCode} onChange={(e) => setSecretCode(e.target.value)} fullWidth />
+          <Button variant="contained" onClick={handleRegister}>Register as Admin</Button>
         </Box>
       </Paper>
     </Container>
