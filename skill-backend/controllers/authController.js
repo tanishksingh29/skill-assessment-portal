@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 exports.registerUser = async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, role = 'user' } = req.body; // default to 'user'
 
   try {
     const [existing] = await db.query('SELECT * FROM users WHERE email = ?', [email]);
@@ -14,7 +14,7 @@ exports.registerUser = async (req, res) => {
       name,
       email,
       hashed,
-      'user',
+      role,
     ]);
 
     res.status(201).json({ message: 'User registered successfully' });
