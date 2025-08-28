@@ -1,5 +1,5 @@
-require("dotenv").config();
-const mysql = require("mysql2");
+require('dotenv').config(); // only needed for local development
+const mysql = require('mysql2');
 
 const connection = mysql.createConnection({
   host: process.env.MYSQLHOST,
@@ -11,9 +11,10 @@ const connection = mysql.createConnection({
 
 connection.connect((err) => {
   if (err) {
-    console.error("CONNECT FAILED", err.code);
+    console.error('CONNECT FAILED', err.code);
   } else {
-    console.log("CONNECTED");
+    console.log('CONNECTED TO DATABASE');
   }
 });
-module.exports = { connection };
+
+module.exports = connection; // export the connection directly
