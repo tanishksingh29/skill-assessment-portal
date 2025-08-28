@@ -8,17 +8,22 @@ import {
   Typography,
   Container,
   Paper,
+  MenuItem,
+  Select,
+  InputLabel,
+  FormControl,
 } from '@mui/material';
 
 function Register() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [role, setRole] = useState('user'); // default role
   const navigate = useNavigate();
 
   const handleRegister = async () => {
     try {
-      await api.post('/auth/register', { name, email, password });
+      await api.post('/auth/register', { name, email, password, role });
       alert('Registered successfully');
       navigate('/');
     } catch (err) {
@@ -36,6 +41,15 @@ function Register() {
           <TextField label="Name" value={name} onChange={(e) => setName(e.target.value)} fullWidth />
           <TextField label="Email" value={email} onChange={(e) => setEmail(e.target.value)} fullWidth />
           <TextField label="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} fullWidth />
+
+          <FormControl fullWidth>
+            <InputLabel>Role</InputLabel>
+            <Select value={role} label="Role" onChange={(e) => setRole(e.target.value)}>
+              <MenuItem value="user">User</MenuItem>
+              <MenuItem value="admin">Admin</MenuItem>
+            </Select>
+          </FormControl>
+
           <Button variant="contained" onClick={handleRegister}>Register</Button>
         </Box>
       </Paper>
