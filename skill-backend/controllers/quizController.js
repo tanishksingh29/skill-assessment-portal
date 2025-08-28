@@ -102,26 +102,23 @@ exports.getQuizAttempt = async (req, res) => {
 
 // Get questions for a skill
 exports.getQuestionsForSkill = async (req, res) => {
-    const { skillId } = req.params;
-    try {
-      const [questions] = await db.query(
-        `SELECT id, question_text, options, correct_answer FROM questions WHERE skill_id = ?`,
-        [skillId]
-      );
-  
-      
-      const formattedQuestions = questions.map(q => ({
-        id: q.id,
-        question: q.question_text,
-        options: JSON.parse(q.options), 
-        correctAnswer: q.correct_answer,
-      }));
-  
-      res.json(formattedQuestions);
-    } catch (err) {
-      console.error('Error fetching questions:', err.message);
-      res.status(500).json({ error: 'Failed to fetch questions' });
-    }
-  };
-  
+  const { skillId } = req.params;
+  try {
+    const [questions] = await db.query(
+      `SELECT id, question_text, options FROM questions WHERE skill_id = ?`,
+      [skillId]
+    );
+
+    const formattedQuestions = questions.map(q => ({
+      id: q.id,
+      question: q.question_text,
+      options: JSON.parse(q.options), 
+    }));
+
+    res.json(formattedQuestions);
+  } catch (err) {
+    console.error('Error fetching questions:', err.message);
+    res.status(500).json({ error: 'Failed to fetch questions' });
+  }
+};
   
