@@ -1,6 +1,7 @@
-require('dotenv').config(); // only needed for local development
-const mysql = require('mysql2/promise');
+require('dotenv').config(); // only for local dev
+const mysql = require("mysql2/promise");
 
+// Use a connection pool
 const db = mysql.createPool({
   host: process.env.MYSQLHOST,
   port: process.env.MYSQLPORT,
@@ -8,16 +9,8 @@ const db = mysql.createPool({
   password: process.env.MYSQLPASSWORD,
   database: process.env.MYSQLDATABASE,
   waitForConnections: true,
-  connectionLimit: 10, // max 10 simultaneous connections
+  connectionLimit: 10,
   queueLimit: 0,
 });
 
-connection.connect((err) => {
-  if (err) {
-    console.error('CONNECT FAILED', err.code);
-  } else {
-    console.log('CONNECTED TO DATABASE');
-  }
-});
-
-module.exports = connection; // export the connection directly
+module.exports = db;
