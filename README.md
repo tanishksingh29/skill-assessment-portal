@@ -27,7 +27,7 @@ Supports **role-based access** (`user`, `admin`) with secure JWT-based authentic
 
 ##  How to Use
 
-1. Open the app in browser (e.g. `http://localhost:3000`)
+1. Open the app in browser (e.g. `https://skill-assessment-portal-nine.vercel.app/register`)
 2. Click **"Register"** to create an account (defaults to `user` role)
 3. After registration, **login** using your email/password
 4. Based on your role:
@@ -42,7 +42,7 @@ Supports **role-based access** (`user`, `admin`) with secure JWT-based authentic
 
 - Node.js ≥ 18
 - MySQL ≥ 8
-- npm or yarn
+- npm 
 
 ---
 
