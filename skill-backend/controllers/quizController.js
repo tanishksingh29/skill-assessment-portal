@@ -112,7 +112,7 @@ exports.getQuestionsForSkill = async (req, res) => {
     const formattedQuestions = questions.map(q => ({
       id: q.id,
       question: q.question_text,
-      options: JSON.parse(q.options), 
+      options: typeof q.options === 'string' ? JSON.parse(q.options) : q.options,
     }));
 
     res.json(formattedQuestions);
