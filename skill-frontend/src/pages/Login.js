@@ -20,13 +20,11 @@ function Login() {
   const handleLogin = async () => {
     try {
       const res = await api.post('/auth/login', { email, password });
-
       const token = res.data.token;
       if (!token) return alert("Login failed");
 
       localStorage.setItem('token', token);
-
-      const user = jwtDecode(token); 
+      const user = jwtDecode(token);
 
       if (user.role === 'admin') navigate('/admin');
       else navigate('/dashboard');
@@ -79,6 +77,13 @@ function Login() {
             >
               Login
             </Button>
+
+            <Typography variant="body2">
+              Don’t have an account?{" "}
+              <Button variant="text" onClick={() => navigate('/user-register')}>
+                Register here
+              </Button>
+            </Typography>
           </Box>
         </Paper>
       </Container>
