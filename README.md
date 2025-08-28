@@ -27,12 +27,14 @@ Supports **role-based access** (`user`, `admin`) with secure JWT-based authentic
 
 ##  How to Use
 
-1. Open the app in browser (e.g. `https://skill-assessment-portal-nine.vercel.app/register`)
-2. Click **"Register"** to create an account (defaults to `user` role)
-3. After registration, **login** using your email/password
-4. Based on your role:
-   - **User**: Start skill-based quizzes, view performance
-   - **Admin**: Add/manage skills, add questions, delete data
+1. Open the frontend app (e.g. `https://skill-assessment-portal-nine.vercel.app`)
+2. To register:
+   - **Users**: Go to `/user-register`
+   - **Admins**: Go to `/register` and enter secret code `ADMIN`
+3. Login with your credentials at `/`
+4. Role-based dashboard:
+   - **Users**: Can take quizzes and view results
+   - **Admins**: Can manage skills, questions, and view reports
 
 ---
 
@@ -221,12 +223,22 @@ Runs at: `http://localhost:3000`
 
 ##  Features
 
--  User & Admin login/register
--  Skill-based quiz system
--  Performance tracking
--  JWT-based authentication
--  MySQL relational DB
--  Modern Material UI design
+-  Public User Registration & Login  
+-  Admin-only Registration (via secret code: `ADMIN`)
+-  Role-based Access (User / Admin)
+-  Skill-based Quiz System  
+-  Quiz Submission, Evaluation & Result Summary  
+-  User Quiz History & Attempt Review  
+-  Admin Panel for Skills & Questions Management  
+-  Performance Reports (Admin)
+-  JWT-based Authentication & Route Protection  
+-  MySQL Relational Database  
+-  Optimized Database with Indexing:
+   - `users.email`
+   - `questions.skill_id`
+   - `quiz_attempts.user_id`
+   - `quiz_attempts.skill_id`
+-  Modern Material UI Design (React + MUI)
 
 ---
 
