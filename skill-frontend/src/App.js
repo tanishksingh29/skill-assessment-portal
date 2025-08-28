@@ -2,6 +2,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import UserRegister from './pages/UserRegister';
 import UserDashboard from './pages/UserDashboard';
 import AdminDashboard from './pages/AdminDashboard';
 import QuizPage from './pages/QuizPage';
@@ -15,8 +16,9 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+      <Route path="/" element={<Login />} />
+        <Route path="/register" element={<Register />} />          {/* Admin only */}
+        <Route path="/user-register" element={<UserRegister />} /> {/* Public */}
 
         {/* Protected Routes */}
         <Route
